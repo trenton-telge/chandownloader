@@ -69,6 +69,11 @@ class DownloadListAdapter(private val dataSet: ArrayList<DownloadListModel>, pri
                 }
             }
         }
+        if (dataModel.working){
+            viewHolder.statusView!!.text = context.getString(R.string.working)
+            viewHolder.statusView!!.setBackgroundColor(rgb(0, 43, 114))
+        }
+        viewHolder.threadProgress!!.isIndeterminate = dataModel.indeterminate
         // Return the completed view to render on screen
         return localConvertView
     }

@@ -8,4 +8,5 @@
     <string name="download_all">Download All</string>
     <string name="ready">Ready</string>
     <string name="complete">Complete</string>
+    <string name="working">Working...</string>
 </resources>

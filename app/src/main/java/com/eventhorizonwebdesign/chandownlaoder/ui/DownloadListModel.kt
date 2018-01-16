@@ -22,10 +22,17 @@ class DownloadListModel(var url: String, var id: String, var progress: Int, var 
     var imageLinksList = Vector<String>()
     var linksGrabbed = false
     var imagesGrabbed = false
+    var working = false
+    var indeterminate = false
     var max = 0
     class DownloadManagerTask: AsyncTask<DownloadListModel, Int, DownloadListModel>() {
         var p = 0
         lateinit var el: DownloadListModel
+        override fun onPreExecute() {
+            el.working = true
+            el.adapter.notifyDataSetChanged()
+            el.view.invalidateViews()
+        }
         override fun doInBackground(vararg params: DownloadListModel): DownloadListModel {
             el = params[0]
             val downloadsPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
@@ -49,12 +56,20 @@ class DownloadListModel(var url: String, var id: String, var progress: Int, var 
         }
 
         override fun onPostExecute(result: DownloadListModel) {
+            result.working = false
             result.progress = result.max
             result.adapter.notifyDataSetChanged()
             result.view.invalidateViews()
         }
     }
     class PopulateLinksListTask: AsyncTask<DownloadListModel, Int, DownloadListModel>() {
+        lateinit var el: DownloadListModel
+        override fun onPreExecute() {
+            el.indeterminate = true
+            el.working = true
+            el.adapter.notifyDataSetChanged()
+            el.view.invalidateViews()
+        }
         override fun doInBackground(vararg params: DownloadListModel): DownloadListModel {
             val doc = Jsoup.connect(params[0].url).get()
             val links = doc.select("a[href]") //href of a, not src of img, will give full res
@@ -74,6 +89,8 @@ class DownloadListModel(var url: String, var id: String, var progress: Int, var 
         }
 
         override fun onPostExecute(result: DownloadListModel) {
+            result.indeterminate = false
+            result.working = false
             result.adapter.notifyDataSetChanged()
             result.view.invalidateViews()
         }
