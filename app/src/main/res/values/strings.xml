@@ -9,4 +9,5 @@
     <string name="ready">Ready</string>
     <string name="complete">Complete</string>
     <string name="working">Working...</string>
+    <string name="action_delete_all">Remove All</string>
 </resources>

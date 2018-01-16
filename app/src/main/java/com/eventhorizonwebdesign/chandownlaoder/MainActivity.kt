@@ -99,9 +99,19 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.action_settings -> {
+                //TODO switch to settings activity
+            }
+            R.id.action_delete_all -> {
+                adapter.clear()
+                adapter.notifyDataSetChanged()
+                Snackbar.make(findViewById(R.id.mainLayout), "Download list cleared", Snackbar.LENGTH_SHORT).show()
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
+        return true
     }
 }
