@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">Chan Downlaoder</string>
+    <string name="app_name">Chan Downloader</string>
     <string name="action_settings">Settings</string>
+    <string name="add_a_thread">Add a Thread</string>
+    <string name="thread_url">Thread URL</string>
+    <string name="add_thread">Add Thread</string>
+    <string name="get_links">Get Links</string>
+    <string name="download_all">Download All</string>
+    <string name="ready">Ready</string>
+    <string name="complete">Complete</string>
 </resources>
