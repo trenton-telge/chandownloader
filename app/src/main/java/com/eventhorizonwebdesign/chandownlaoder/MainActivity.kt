@@ -49,7 +49,9 @@ class MainActivity : AppCompatActivity() {
         val mGetLinksButton = findViewById<Button>(R.id.getLinksButton)
         mGetLinksButton.setOnClickListener {
             for (model: DownloadListModel in downloadModelList){
-                model.populateLinksList()
+                if (!model.linksGrabbed) {
+                    model.populateLinksList()
+                }
             }
         }
         val mDownloadButton = findViewById<Button>(R.id.downloadButton)
@@ -61,7 +63,9 @@ class MainActivity : AppCompatActivity() {
                         arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
             } else {
                 for (model: DownloadListModel in downloadModelList) {
-                    model.download()
+                    if (!model.imagesGrabbed) {
+                        model.download()
+                    }
                 }
             }
         }
