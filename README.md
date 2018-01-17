@@ -1,2 +1,2 @@
-# chandownloader
-Android 4chan Thread image scraper and downloader
+## 1.0 Initial Release
+[Download Here](https://github.com/darkforce100/chandownloader/releases/download/1.0/app-release.apk)
