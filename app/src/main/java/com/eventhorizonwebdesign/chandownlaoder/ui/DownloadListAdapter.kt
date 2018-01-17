@@ -3,6 +3,7 @@ package com.eventhorizonwebdesign.chandownlaoder.ui
 import android.content.Context
 import android.graphics.Color.rgb
 import android.os.Build
+import android.support.constraint.ConstraintLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.eventhorizonwebdesign.chandownlaoder.R
+
+
 
 
 /**
@@ -21,6 +24,7 @@ class DownloadListAdapter(private val dataSet: ArrayList<DownloadListModel>, pri
 
     // View lookup cache
     private class ViewHolder {
+        internal var threadContainer: ConstraintLayout? = null
         internal var threadID: TextView? = null
         internal var threadProgress: ProgressBar? = null
         internal var statusView: TextView? = null
@@ -41,7 +45,8 @@ class DownloadListAdapter(private val dataSet: ArrayList<DownloadListModel>, pri
             viewHolder = ViewHolder()
             val inflater = LayoutInflater.from(context)
             localConvertView = inflater.inflate(R.layout.thread_list_item, parent, false)
-            viewHolder.threadID = localConvertView!!.findViewById(R.id.threadIDDisplay)
+            viewHolder.threadContainer = localConvertView!!.findViewById(R.id.threadContainer)
+            viewHolder.threadID = localConvertView.findViewById(R.id.threadIDDisplay)
             viewHolder.threadProgress = localConvertView.findViewById(R.id.threadprogress)
             viewHolder.statusView = localConvertView.findViewById(R.id.statusIndicator)
 
