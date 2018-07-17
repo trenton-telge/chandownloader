@@ -3,6 +3,7 @@ package com.eventhorizonwebdesign.chandownlaoder.ui
 import android.content.Context
 import android.graphics.Color.rgb
 import android.os.Build
+import android.support.constraint.ConstraintLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,7 @@ import com.eventhorizonwebdesign.chandownlaoder.R
 /**
  * Created by Alienware on 1/14/2018.
  */
-class DownloadListAdapter(private val dataSet: ArrayList<DownloadListModel>, private var mContext: Context) : ArrayAdapter<DownloadListModel>(mContext, R.layout.thread_list_item, dataSet), View.OnClickListener {
+class DownloadListAdapter(private dataSet: ArrayList<DownloadListModel>, private var mContext: Context) : ArrayAdapter<DownloadListModel>(mContext, R.layout.thread_list_item, dataSet), View.OnClickListener {
 
     private var lastPosition = -1
 
@@ -51,6 +52,7 @@ class DownloadListAdapter(private val dataSet: ArrayList<DownloadListModel>, pri
         }
 
         lastPosition = position
+
 
         viewHolder.threadID!!.text = dataModel!!.id
         viewHolder.threadProgress!!.max = dataModel.max
